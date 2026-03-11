@@ -1,3 +1,10 @@
+let session = new Session();
+session = session.getSession();
+
+if(session !== "") {
+    window.location.href = 'hexa.html';
+}
+
 document.querySelector('#registracija').addEventListener('click', () => {
     document.querySelector('.custom-modal').style.display = 'block';
 });
@@ -38,7 +45,16 @@ document.querySelector('#registrationForm').addEventListener('submit', (e) => {
     e.preventDefault();
 
     if(validator.validationPassed()) {
-        alert('Formular je validan');
+        
+        let user = new User();
+        user.username = document.querySelector('#korisnicko_ime').value;
+        user.email = document.querySelector('#email').value;
+        user.password = document.querySelector('#lozinka').value;
+
+        console.log(user);
+
+        user.create();
+
     } else {
         alert('Formular nije validan');
     }
