@@ -61,6 +61,15 @@ form div button {
     font-size: 18px;
 }
 
+form ul {
+    list-style: none;
+}
+
+form ul li {
+    color: red;
+    margin-top: 10px;
+}
+
 .no-acc-register{
     text-align: center;
     margin-top: 50px;
