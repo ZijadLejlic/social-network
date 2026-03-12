@@ -112,3 +112,28 @@ form ul li {
     top: 30px;
 }
 
+.inner-container {
+    border: 1px solid green;
+    padding: 15px;
+}
+
+.inner-container.left-side {
+    text-align: center;
+}
+
+.inner-container.left-side img {
+    border: 5px solid white;
+}
+
+.inner-container.right-side form {
+    display: flex;
+    height: 100%;
+}
+
+.inner-container.right-side form textarea{
+    width: 85%;
+    border: 0;
+    padding: 10px;
+    resize: none;
+    outline-color: green;
+}
