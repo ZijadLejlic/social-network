@@ -1,9 +1,11 @@
 let session = new Session();
-session = session.getSession();
+session_id = session.getSession();
 
-if(session !== "") {
-    
+if(session_id !== "") {
+    let user = new User();
+    user.get(session_id);
 } else {
     window.location.href = '/';
 }
    
+// 1:25:00

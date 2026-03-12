@@ -137,3 +137,11 @@ form ul li {
     resize: none;
     outline-color: green;
 }
+
+.inner-container.right-side form button {
+    width: 15%;
+    border: 0;
+    background-color: green;
+    color: white;
+    font-size: 18px;
+}
