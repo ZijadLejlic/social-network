@@ -34,14 +34,11 @@ class User {
 
     }
 
-    get(user_id) {
+    async get(user_id) {
         let api_url = this.api_url + '/users/' + user_id;
-        fetch(api_url)
-            .then(response => response.json())
-            .then(data => {
-                document.querySelector('#username').innerText = data['username'];
-                document.querySelector('#email').innerText = data['email'];
-            });
+        let response = await fetch(api_url);
+        let data = await response.json();
+            return data;
 
     }
 
