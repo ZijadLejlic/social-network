@@ -145,3 +145,12 @@ form ul li {
     color: white;
     font-size: 18px;
 }
+
+#deleteProfile {
+    background-color: red;
+    color: white;
+    border: 0;
+    padding: 10px 20px;
+    font-size: 18px;
+    margin-top: 20px;
+}

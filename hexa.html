@@ -33,6 +33,32 @@
             </div>
         </div>
     </div>
+
+    <div class="custom-modal">
+        <button id="close-modal">X</button>
+
+        <form id="editForm">
+            <h2>Edit Account</h2>
+
+            <div>
+                <label for="korisnicko_ime">Username:</label>
+                <input type="text" id="korisnicko_ime" name="korisnicko_ime" placeholder="John Doe" autocomplete="username">
+            </div>
+            <div>
+                <label for="edit_email">Email Address:</label>
+                <input type="email" id="edit_email" name="edit_email" placeholder="johndoe@gmail.com" autocomplete="email">
+            </div>
+            
+            <div>
+                <button type="submit">Save Changes</button>
+            </div>
+        </form>
+
+        <hr>
+
+        <button id="deleteProfile">Delete Account</button>
+
+    </div>
     
     <script src="js/Session.js"></script>
     <script src="js/User.js"></script>
