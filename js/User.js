@@ -102,6 +102,9 @@ class User {
         .then(response => response.json())
         .then(data => {
             alert('Profile deleted successfully');
+            let session = new Session();
+            session.destroySession();
+            window.location.href = '/';
         })
         .catch(error => {
             console.error('Error deleting user:', error);
@@ -109,3 +112,4 @@ class User {
     }
 }
 
+// 1:40:00
