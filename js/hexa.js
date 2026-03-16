@@ -66,10 +66,25 @@ document.querySelector('#postForm').addEventListener('submit', (e) => {
     let current_user = new User();
     current_user = await current_user.get(session_id);
 
+    let delete_post_html = '';
+
+    if (current_user['user_id'] === post['user_id']) {
+      delete_post_html = `<button class ="remove-btn" onclick="removeMyPost(this)">Delete</button>`;
+    }
+
     document.querySelector('#allPostsWrapper').innerHTML =
       `<div class="single-post" data-post-id="${post['post_id']}">
                                                             <div class="post-content">${post.content}</div>
                                                             
+                                                            <div class="post-actions">
+                                                            <p><b>Autor:</b> ${current_user['username']}</p>
+                                                            <div>
+                                                            <button onclick="likePost(this)" class="likePostJS like-btn"><span class="likes-count">${post.likes}</span>Likes</button>
+                                                            <button class = "comment-btn" onclick="commentPost(this)">Comment</button>
+                                                            ${delete_post_html}
+                                                            </div>
+                                                            </div>
+
                                                             <div class="post-comments">
                                                             <form>
                                                             <input placeholder="Write a comment..." type="text" class="comment-input" />
@@ -85,3 +100,7 @@ document.querySelector('#postForm').addEventListener('submit', (e) => {
 });
 
 const commentPostSubmit = (event) => {};
+
+const removeMyPost = (el) => {};
+
+// 2:00:00
