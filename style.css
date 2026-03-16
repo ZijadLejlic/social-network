@@ -154,3 +154,37 @@ form ul li {
   font-size: 18px;
   margin-top: 20px;
 }
+
+#allPostsWrapper .single-post {
+  background-color: #eaeaea;
+  padding: 15px;
+  margin-top: 20px;
+  color: #000;
+}
+
+#allPostsWrapper .single-post .post-content {
+  font-size: 22px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000;
+  margin-bottom: 10px;
+}
+
+#allPostsWrapper .single-post .post-comments form {
+  height: 30px;
+  margin-top: 15px;
+}
+
+#allPostsWrapper .single-post .post-comments form input {
+  width: 80%;
+  padding: 0 10px;
+  border: 0;
+  outline-color: green;
+}
+
+#allPostsWrapper .single-post .post-comments form button {
+  width: 20%;
+  border: 0;
+  background-color: grey;
+  color: white;
+  font-size: 16px;
+}

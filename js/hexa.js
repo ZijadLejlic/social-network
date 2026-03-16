@@ -62,8 +62,26 @@ document.querySelector('#postForm').addEventListener('submit', (e) => {
     let post = new Post();
     post.content = content;
     post = await post.create(content);
-    console.log(post);
+
+    let current_user = new User();
+    current_user = await current_user.get(session_id);
+
+    document.querySelector('#allPostsWrapper').innerHTML =
+      `<div class="single-post" data-post-id="${post['post_id']}">
+                                                            <div class="post-content">${post.content}</div>
+                                                            
+                                                            <div class="post-comments">
+                                                            <form>
+                                                            <input placeholder="Write a comment..." type="text" class="comment-input" />
+                                                            <button onclick="commentPostSubmit(event)">Comment</button>
+                                                            </form>
+                                                            </div>
+                                                            
+                                                            </div>
+                                                            `;
   }
 
   createPost();
 });
+
+const commentPostSubmit = (event) => {};
