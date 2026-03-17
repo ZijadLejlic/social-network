@@ -216,3 +216,7 @@ form ul li {
   color: white;
   font-size: 16px;
 }
+
+#allPostsWrapper .single-post .post-comments {
+  display: none;
+}

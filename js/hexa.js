@@ -66,6 +66,8 @@ document.querySelector('#postForm').addEventListener('submit', (e) => {
     let current_user = new User();
     current_user = await current_user.get(session_id);
 
+    let html = document.querySelector('#allPostsWrapper').innerHTML;
+
     let delete_post_html = '';
 
     if (current_user['user_id'] === post['user_id']) {
@@ -93,7 +95,7 @@ document.querySelector('#postForm').addEventListener('submit', (e) => {
                                                             </div>
                                                             
                                                             </div>
-                                                            `;
+                                                            ` + html;
   }
 
   createPost();
@@ -145,10 +147,30 @@ async function getAllPosts() {
 
 getAllPosts();
 
-const commentPostSubmit = (event) => {};
+const commentPostSubmit = (e) => {
+  e.preventDefault();
+
+  let btn = e.target;
+  btn.setAttribute('disabled', 'true');
+
+  let main_post_el = btn.closest('.single-post');
+  let post_id = main_post_el.getAttribute('data-post-id');
+
+  let comment_value = main_post_el.querySelector('input').value;
+
+  main_post_el.querySelector('.post-comments').innerHTML +=
+    `<div class="single-comment">
+      <p>${comment_value}</p>
+    </div>`;
+};
 
 const removeMyPost = (el) => {};
 
 const likePost = (el) => {};
 
-const commentPost = (el) => {};
+const commentPost = (btn) => {
+  let main_post_el = btn.closest('.single-post');
+  let post_id = main_post_el.getAttribute('data-post-id');
+
+  main_post_el.querySelector('.post-comments').style.display = 'block';
+};
