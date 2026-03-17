@@ -109,6 +109,10 @@ async function getAllPosts() {
     async function getPostUser() {
       let user = new User();
       user = await user.get(post['user_id']);
+
+      let comments = new Comment();
+      comments = await comments.getAllCommentsForPost(post['post_id']);
+
       let html = document.querySelector('#allPostsWrapper').innerHTML;
 
       let delete_post_html = '';
@@ -158,10 +162,18 @@ const commentPostSubmit = (e) => {
 
   let comment_value = main_post_el.querySelector('input').value;
 
+  main_post_el.querySelector('input').value = '';
+
   main_post_el.querySelector('.post-comments').innerHTML +=
     `<div class="single-comment">
       <p>${comment_value}</p>
     </div>`;
+
+  let comment = new Comment();
+  comment.post_id = post_id;
+  comment.user_id = session_id;
+  comment.content = comment_value;
+  comment.create();
 };
 
 const removeMyPost = (el) => {};
