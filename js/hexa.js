@@ -111,7 +111,7 @@ async function getAllPosts() {
       user = await user.get(post['user_id']);
 
       let comments = new Comment();
-      comments = await comments.getAllCommentsForPost(post['post_id']);
+      comments = await comments.get(post['post_id']);
 
       let html = document.querySelector('#allPostsWrapper').innerHTML;
 
@@ -176,9 +176,30 @@ const commentPostSubmit = (e) => {
   comment.create();
 };
 
-const removeMyPost = (el) => {};
+const removeMyPost = (btn) => {
+  let post_id = btn.closest('.single-post').getAttribute('data-post-id');
 
-const likePost = (el) => {};
+  let post = new Post();
+  post.delete(post_id);
+
+  btn.closest('.single-post').remove();
+};
+
+const likePost = (btn) => {
+  let post_el = btn.closest('.single-post');
+  let post_id = post_el.getAttribute('data-post-id');
+
+  let span = btn.querySelector('span');
+  let likes = parseInt(span.innerText);
+
+  let new_likes = likes + 1;
+
+  span.innerText = new_likes;
+  btn.setAttribute('disabled', 'true');
+
+  let post = new Post();
+  post.like(post_id, new_likes);
+};
 
 const commentPost = (btn) => {
   let main_post_el = btn.closest('.single-post');

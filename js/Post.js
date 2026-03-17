@@ -32,4 +32,34 @@ class Post {
     let data = await response.json();
     return data;
   }
+
+  like(post_id) {
+    fetch(this.api_url + '/posts/' + post_id, {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ likes: this.likes + 1 }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Post liked:', data);
+      })
+      .catch((error) => {
+        console.error('Error liking post:', error);
+      });
+  }
+
+  delete(post_id) {
+    fetch(this.api_url + '/posts/' + post_id, {
+      method: 'DELETE',
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Post deleted:', data);
+      })
+      .catch((error) => {
+        console.error('Error deleting post:', error);
+      });
+  }
 }
