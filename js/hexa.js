@@ -79,7 +79,7 @@ document.querySelector('#postForm').addEventListener('submit', (e) => {
                                                             <div class="post-actions">
                                                             <p><b>Autor:</b> ${current_user['username']}</p>
                                                             <div>
-                                                            <button onclick="likePost(this)" class="likePostJS like-btn"><span class="likes-count">${post.likes}</span>Likes</button>
+                                                            <button onclick="likePost(this)" class="likePostJS like-btn"><span class="likes-count">${post.likes}</span> Likes</button>
                                                             <button class = "comment-btn" onclick="commentPost(this)">Comment</button>
                                                             ${delete_post_html}
                                                             </div>
@@ -99,8 +99,56 @@ document.querySelector('#postForm').addEventListener('submit', (e) => {
   createPost();
 });
 
+async function getAllPosts() {
+  let all_posts = new Post();
+  all_posts = await all_posts.getAllPosts();
+
+  all_posts.forEach(async (post) => {
+    async function getPostUser() {
+      let user = new User();
+      user = await user.get(post['user_id']);
+      let html = document.querySelector('#allPostsWrapper').innerHTML;
+
+      let delete_post_html = '';
+
+      if (session_id === post['user_id']) {
+        delete_post_html = `<button class ="remove-btn" onclick="removeMyPost(this)">Remove</button>`;
+      }
+
+      document.querySelector('#allPostsWrapper').innerHTML =
+        `<div class="single-post" data-post-id="${post.id}">
+                                                            <div class="post-content">${post.content}</div>
+                                                            
+                                                            <div class="post-actions">
+                                                            <p><b>Autor:</b> ${user.username}</p>
+                                                            <div>
+                                                            <button onclick="likePost(this)" class="likePostJS like-btn"><span class="likes-count">${post.likes}</span> Likes</button>
+                                                            <button class = "comment-btn" onclick="commentPost(this)">Comment</button>
+                                                            ${delete_post_html}
+                                                            </div>
+                                                            </div>
+
+                                                            <div class="post-comments">
+                                                            <form>
+                                                            <input placeholder="Write a comment..." type="text" class="comment-input" />
+                                                            <button onclick="commentPostSubmit(event)">Comment</button>
+                                                            </form>
+                                                            </div>
+                                                            
+                                                            </div>
+                                                            ` + html;
+    }
+
+    getPostUser();
+  });
+}
+
+getAllPosts();
+
 const commentPostSubmit = (event) => {};
 
 const removeMyPost = (el) => {};
 
-// 2:00:00
+const likePost = (el) => {};
+
+const commentPost = (el) => {};
